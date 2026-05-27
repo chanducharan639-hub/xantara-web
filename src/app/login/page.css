@@ -1,0 +1,551 @@
+/* Main Dashboard Layout */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #faf9f7;
+    color: #1a1a1a;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid #ede9e4;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-top {
+    flex: 1;
+}
+
+/* LOGO */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    min-height: 60px;
+}
+
+/* Override Logo component size inside sidebar if needed */
+.logo-container img {
+    max-width: 170px;
+    height: auto;
+    object-fit: contain;
+}
+
+.logo-image {
+    object-fit: contain;
+    display: block;
+}
+
+.logo-fallback {
+    display: none;
+}
+
+/* MENU */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: none;
+    background-color: transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #1a1a1a;
+    transition: background-color 0.2s ease;
+    text-transform: uppercase;
+}
+
+.menu-item:hover {
+    background-color: #f5f5f2;
+}
+
+.menu-item.active {
+    background-color: #f5f5f2;
+}
+
+.menu-item svg {
+    flex-shrink: 0;
+}
+
+.menu-item.logout {
+    color: #d32f2f;
+}
+
+/* MEMBERSHIP CARD */
+.membership-card {
+    background-color: #ffffff;
+    border: 1px solid #ede9e4;
+    border-radius: 24px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.crown {
+    font-size: 28px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.membership-card h3 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.divider {
+    width: 30px;
+    height: 1px;
+    background-color: #d8d5cf;
+    margin: 1rem auto;
+}
+
+.membership-card p {
+    font-size: 13px;
+    color: #7a7a7a;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.benefits-btn {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #1a1a1a;
+    background-color: transparent;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.benefits-btn:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+}
+
+/* TOPBAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.welcome {
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #8a8a8a;
+}
+
+.topbar-icons {
+    display: flex;
+    gap: 20px;
+    padding-top: 8px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.icon-btn:hover {
+    color: #8a8a8a;
+}
+
+/* CARDS */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ede9e4;
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-heading {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.view-all-btn {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #1a1a1a;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.view-all-btn:hover {
+    color: #8a8a8a;
+}
+
+/* ACCOUNT INFO */
+.account-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.account-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-field label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #a8a8a8;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.account-field h3 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.account-right {
+    border-left: 1px solid #ede9e4;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status-badge {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ORDERS */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.order-item.with-border {
+    border-bottom: 1px solid #ede9e4;
+}
+
+.order-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 1.5rem;
+}
+
+.order-image {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+}
+
+.order-details h3 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.order-number {
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 0.25rem;
+}
+
+.order-date {
+    font-size: 13px;
+    color: #b8b8b8;
+}
+
+.order-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.order-price {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.badge-delivered {
+    background-color: #edf5e8;
+    color: #5f8057;
+}
+
+.badge-shipping {
+    background-color: #f8efd3;
+    color: #af8c22;
+}
+
+/* PAYMENT METHODS */
+.payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.payment-card {
+    border: 1px solid #ede9e4;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.card-logo {
+    width: 60px;
+    height: 60px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.card-details h3 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.card-details p {
+    font-size: 13px;
+    color: #8a8a8a;
+}
+
+.add-card {
+    border: 1px dashed #d8d5cf;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #8a8a8a;
+    transition: background-color 0.2s ease;
+    min-height: 120px;
+    font-weight: 500;
+}
+
+.add-card:hover {
+    background-color: #fafaf8;
+}
+
+/* SCROLLBAR STYLING */
+.sidebar::-webkit-scrollbar,
+.main-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.main-content::-webkit-scrollbar-thumb {
+    background: #d8d5cf;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #c8c5bf;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .account-grid {
+        gap: 2rem;
+    }
+
+    .account-right {
+        padding-left: 1.5rem;
+    }
+
+    .payment-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .account-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .account-right {
+        border-left: none;
+        border-top: 1px solid #ede9e4;
+        padding-left: 0;
+        padding-top: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .topbar-icons {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .order-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-right {
+        width: 100%;
+        align-items: flex-start;
+    }
+}
+
+/* ── Settings form group ── */
+.form-group-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group-settings label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #888;
+    text-transform: uppercase;
+}
