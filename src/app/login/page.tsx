@@ -37,6 +37,11 @@ function DashboardInner() {
 
   console.log("USER:", user);
   console.log("LOADING:", authLoading);
+  const handleLogin = async () => {
+    await signIn("google", {
+      callbackUrl: "/profile",
+    });
+  };
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/login" });
     router.push("/login");
@@ -55,7 +60,7 @@ function DashboardInner() {
     searchParams.get('success') === '1'
   );
 
-  /* GOOGLE LOGIN */
+
 
 
   /* SUCCESS MESSAGE */
@@ -94,7 +99,7 @@ function DashboardInner() {
       <main className="min-h-screen flex items-center justify-center">
 
         <button
-          onClick={() => signIn("google")}
+          onClick={handleLogin}
           className="px-8 py-4 bg-black text-white uppercase tracking-widest"
         >
           Login With Google

@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/firebase';
+import { useSession } from "next-auth/react";
 import { useStore } from '@/store/useStore';
 import { ChevronLeft, Lock } from 'lucide-react';
 
@@ -40,7 +39,8 @@ export default function CheckoutPage() {
   }, []);
 
 
-  const [user] = useAuthState(auth);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   const {
     cart,
@@ -56,7 +56,7 @@ export default function CheckoutPage() {
   const [form, setForm] = useState<ShippingForm>({
     ...INITIAL_FORM,
     email: user?.email || '',
-    fullName: user?.displayName || '',
+    fullName: user?.name || '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -112,7 +112,7 @@ export default function CheckoutPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId: user.uid,
+          userId: user.email || '',
           userEmail: user.email,
           orderId:
             'XAN-' + Math.floor(100000 + Math.random() * 900000),

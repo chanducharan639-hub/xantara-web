@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 
 import { WishlistProvider } from "../context/WishlistContext";
-
+import { SessionProvider } from "next-auth/react";
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CartDrawer from '@/components/cart/CartDrawer';
@@ -31,19 +31,23 @@ export default function RootLayout({
         className={`${inter.className} min-h-screen flex flex-col bg-gray-50`}
       >
 
-        <WishlistProvider>
+        <SessionProvider>
 
-          {!hideLayout && <Navbar />}
+          <WishlistProvider>
 
-          <main className="flex-1">
-            {children}
-          </main>
+            {!hideLayout && <Navbar />}
 
-          {!hideLayout && <Footer />}
+            <main className="flex-1">
+              {children}
+            </main>
 
-          {!hideLayout && <CartDrawer />}
+            {!hideLayout && <Footer />}
 
-        </WishlistProvider>
+            {!hideLayout && <CartDrawer />}
+
+          </WishlistProvider>
+
+        </SessionProvider>
 
         {/* GOOGLE ANALYTICS */}
         <Script

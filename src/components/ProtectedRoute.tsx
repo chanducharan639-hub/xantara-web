@@ -1,25 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/lib/firebase";
+import { useEffect } from "react";
 
 export default function ProtectedRoute({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [user, loading] = useAuthState(auth);
+    const { status } = useSession();
     const router = useRouter();
 
     useEffect(() => {
-        if (!loading && !user) {
+        if (status === "unauthenticated") {
             router.push("/login");
         }
-    }, [user, loading, router]);
+    }, [status, router]);
 
-    if (loading) return <div>Loading...</div>;
+    if (status === "loading") {
+        return <div>Loading...</div>;
+    }
 
-    return <>{children}</>;
+    return children;
 }

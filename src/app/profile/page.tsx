@@ -2,20 +2,21 @@
 
 import Link from "next/link";
 import { useStore } from "@/store/useStore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/lib/firebase";
+
+import { useSession } from "next-auth/react";
 import { adminEmails } from "@/lib/admin";
 
 export default function ProfilePage() {
 
-  const [user] = useAuthState(auth);
+
 
   const orders =
     useStore((state) => state.orders) || [];
 
   const wishlist =
     useStore((state) => state.wishlist) || [];
-
+  const { data: session } = useSession();
+  const user = session?.user;
   const isAdmin =
     user?.email &&
     adminEmails.includes(user.email);
