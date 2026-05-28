@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Xantara',
   description: 'The future of luxury fashion.',
+  google: "B3lJjC-7hHLHCfaXvCzqV2oAif4Fx_ohd5dTBNIXuPY",
 };
 
 export default function RootLayout({
