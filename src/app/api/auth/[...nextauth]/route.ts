@@ -11,37 +11,32 @@ const handler = NextAuth({
 
     secret: process.env.NEXTAUTH_SECRET,
 
+    trustHost: true,
+
     session: {
         strategy: "jwt",
     },
 
+    cookies: {
+        sessionToken: {
+            name: `next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: true,
+            },
+        },
+    },
+
     pages: {
         signIn: "/login",
+        error: "/login",
     },
 
     callbacks: {
-        async jwt({ token, account, profile }) {
-            if (account) {
-                token.accessToken = account.access_token;
-            }
-
-            if (profile) {
-                token.name = profile.name;
-                token.email = profile.email;
-                token.picture = (profile as any).picture;
-            }
-
-            return token;
-        },
-
-        async session({ session, token }) {
-            if (session.user) {
-                session.user.name = token.name as string;
-                session.user.email = token.email as string;
-                session.user.image = token.picture as string;
-            }
-
-            return session;
+        async redirect({ baseUrl }) {
+            return `${baseUrl}/profile`;
         },
     },
 });
