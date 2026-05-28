@@ -38,7 +38,10 @@ function DashboardInner() {
   console.log("USER:", user);
   console.log("LOADING:", authLoading);
   const handleLogin = async () => {
-    await signIn("google");
+    await signIn("google", {
+      callbackUrl: "/profile",  // sends user to /profile after login
+      redirect: true,
+    });
   };
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/login" });
