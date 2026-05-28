@@ -4,7 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { signIn, signOut, useSession } from "next-auth/react";
+
 import { useWishlist } from "../../context/WishlistContext";
 
 import { useStore } from '@/store/useStore';
@@ -23,7 +23,12 @@ import {
 } from 'lucide-react';
 
 import './page.css';
-
+// USE THIS
+import { signIn, signOut, useSession } from "next-auth/react";
+// (same import — but update handleLogin below)
+const handleLogin = async () => {
+  await signIn("google", { callbackUrl: "/profile" });
+};
 function DashboardInner() {
   const { wishlist, toggleWishlist } = useWishlist();
   const router = useRouter();
