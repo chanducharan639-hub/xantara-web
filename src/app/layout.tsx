@@ -32,7 +32,6 @@ export default function RootLayout({
       >
 
         <SessionProvider>
-
           <WishlistProvider>
 
             {!hideLayout && <Navbar />}
@@ -46,7 +45,6 @@ export default function RootLayout({
             {!hideLayout && <CartDrawer />}
 
           </WishlistProvider>
-
         </SessionProvider>
 
         {/* GOOGLE ANALYTICS */}
