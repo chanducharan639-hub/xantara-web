@@ -11,33 +11,15 @@ const handler = NextAuth({
 
     secret: process.env.NEXTAUTH_SECRET,
 
-    trustHost: true,
+    debug: true,
 
     session: {
         strategy: "jwt",
     },
 
-    cookies: {
-        sessionToken: {
-            name: `next-auth.session-token`,
-            options: {
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-                secure: true,
-            },
-        },
-    },
-
     pages: {
         signIn: "/login",
         error: "/login",
-    },
-
-    callbacks: {
-        async redirect({ baseUrl }) {
-            return `${baseUrl}/profile`;
-        },
     },
 });
 
