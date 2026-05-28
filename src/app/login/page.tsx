@@ -39,7 +39,8 @@ function DashboardInner() {
   console.log("LOADING:", authLoading);
   const handleLogin = async () => {
     await signIn("google", {
-      callbackUrl: "/profile",
+      callbackUrl: "https://xantara.in/profile",
+      redirect: true,
     });
   };
   const handleLogout = async () => {
