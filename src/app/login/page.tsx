@@ -2,16 +2,11 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import ProtectedRoute from "@/components/ProtectedRoute";
-import {
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
 
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useWishlist } from "../../context/WishlistContext";
-import { auth } from '@/lib/firebase';
+
 import { useStore } from '@/store/useStore';
 import Logo from '@/components/ui/Logo';
 
@@ -34,12 +29,16 @@ function DashboardInner() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
 
-  const [user, authLoading] = useAuthState(auth);
+  const user = session?.user;
+
+  const authLoading = status === "loading";
+
   console.log("USER:", user);
   console.log("LOADING:", authLoading);
   const handleLogout = async () => {
-    await signOut(auth);
+    await signOut({ callbackUrl: "/login" });
     router.push("/login");
   };
   const store = useStore();
@@ -57,24 +56,7 @@ function DashboardInner() {
   );
 
   /* GOOGLE LOGIN */
-  const signInWithGoogle = async () => {
 
-    try {
-
-      const provider = new GoogleAuthProvider();
-
-      const result = await signInWithPopup(auth, provider);
-
-      console.log("LOGIN SUCCESS:", result.user);
-
-      router.push("/profile");
-
-    } catch (error) {
-
-      console.error("Google Login Error:", error);
-
-    }
-  };
 
   /* SUCCESS MESSAGE */
   useEffect(() => {
@@ -112,7 +94,7 @@ function DashboardInner() {
       <main className="min-h-screen flex items-center justify-center">
 
         <button
-          onClick={signInWithGoogle}
+          onClick={() => signIn("google")}
           className="px-8 py-4 bg-black text-white uppercase tracking-widest"
         >
           Login With Google
@@ -212,7 +194,7 @@ function DashboardInner() {
             </p>
 
             <h1 className="title">
-              {user.displayName || 'Luxury Member'} ✨
+              {user.name || 'Luxury Member'} ✨
             </h1>
 
             <p className="subtitle">
