@@ -6,8 +6,11 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-black pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h1 className="text-4xl md:text-6xl font-serif mb-8">The Philosophy</h1>
-        <p className="text-lg md:text-xl font-light text-gray-500 leading-relaxed mb-24">
-          Xantara was born from a desire to merge architectural minimalism with futuristic materials. We believe in clothing as a form of spatial design.
+        <p className="text-lg md:text-xl font-light text-gray-500 leading-relaxed mb-12">
+          Xantara is a premium clothing brand crafted for individuals who value style, confidence, and quality. We blend timeless elegance with modern design to create apparel that is sophisticated, comfortable, and effortlessly distinctive.
+        </p>
+        <p className="text-lg md:text-xl font-light text-gray-500 leading-relaxed mb-10">
+          Wear Confidence. Wear Xantara.
         </p>
 
         <div className="aspect-video bg-gray-100 mb-24 relative overflow-hidden">

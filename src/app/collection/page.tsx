@@ -8,6 +8,7 @@ import { Heart } from 'lucide-react';
 
 import { useStore } from '@/store/useStore';
 import { PRODUCTS } from '@/data/products';
+
 import { useWishlist } from "../../context/WishlistContext";
 export default function CollectionPage() {
 
@@ -34,17 +35,19 @@ export default function CollectionPage() {
   ];
 
 
-  const allProducts = PRODUCTS;
+  const allProducts = [
+    ...PRODUCTS,
+    ...localProducts,
+  ];
 
   const filteredProducts =
     filter === "all"
       ? allProducts
       : allProducts.filter(
-        (product) =>
+        (product: any) =>
           product.category?.toLowerCase() ===
           filter.toLowerCase()
       );
-
 
   return (
 

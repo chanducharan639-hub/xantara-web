@@ -1,0 +1,55 @@
+warning: in the working copy of 'src/app/page.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/app/page.tsx b/src/app/page.tsx[m
+[1mindex b04d4c8..7794645 100644[m
+[1m--- a/src/app/page.tsx[m
+[1m+++ b/src/app/page.tsx[m
+[36m@@ -5,7 +5,7 @@[m [mimport { useEffect, useState } from "react";[m
+ import Loader from "@/components/Loader";[m
+ import HeroScene from '@/components/3d/HeroScene';[m
+ import Link from 'next/link';[m
+[31m-import { PRODUCTS } from "@/data/products";[m
+[32m+[m[32mimport { products } from "@/data/products";[m
+ import Image from "next/image";[m
+ [m
+ export default function Home() {[m
+[1mdiff --git a/src/data/products.ts b/src/data/products.ts[m
+[1mindex 415d582..d10a285 100644[m
+[1m--- a/src/data/products.ts[m
+[1m+++ b/src/data/products.ts[m
+[36m@@ -1,33 +1 @@[m
+[31m-export const PRODUCTS = [[m
+[31m-    {[m
+[31m-        id: 1,[m
+[31m-        name: "nighit glowing radium t shirt",[m
+[31m-        price: 2999,[m
+[31m-        category: "t-shirts",[m
+[31m-        description: "Premium glowing radium oversized t-shirt.",[m
+[31m-        images: [[m
+[31m-            "/shirt1.png",[m
+[31m-            "/shirt2.png",[m
+[31m-            "/shirt3.png",[m
+[31m-            "/shirt4.png",[m
+[31m-            "/shirt5.png",[m
+[31m-            "/shirt6.png",[m
+[31m-        ],[m
+[31m-        sizes: ["S", "M", "L", "XL"],[m
+[31m-    },[m
+[31m-    {[m
+[31m-        id: 2,[m
+[31m-        name: "Digi Drape",[m
+[31m-        price: 2999,[m
+[31m-        category: "T-SHIRTS",[m
+[31m-        description:[m
+[31m-            "Heavyweight premium oversized t-shirt crafted with futuristic street aesthetics and bold graphic detailing.",[m
+[31m-        images: [[m
+[31m-            "/digi1.png",[m
+[31m-            "/digi2.png",[m
+[31m-            "/digi3.png",[m
+[31m-            "/digi4.png",[m
+[31m-        ],[m
+[31m-        sizes: ["S", "M", "L", "XL"],[m
+[31m-    }[m
+[31m-];[m
+\ No newline at end of file[m
+[32m+[m[32mexport const products = [];[m
+\ No newline at end of file[m
