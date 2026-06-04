@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Product = {
+export type Product = {
   id: any;
   name: string;
   price: number;
