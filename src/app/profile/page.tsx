@@ -16,10 +16,13 @@ export default function ProfilePage() {
   const wishlist =
     useStore((state) => state.wishlist) || [];
   const { data: session } = useSession();
+  console.log("SESSION:", session);
   const user = session?.user;
   const isAdmin =
     user?.email &&
     adminEmails.includes(user.email);
+
+  console.log("SESSION:", session);
 
   return (
 
@@ -108,6 +111,9 @@ export default function ProfilePage() {
           <h2 className="text-3xl font-serif mb-4">
             XANTARA
           </h2>
+
+          <p>Name: {user?.name || "No Name"}</p>
+          <p>Email: {user?.email || "No Email"}</p>
 
           <p className="text-sm text-gray-500">
             Premium member experience
