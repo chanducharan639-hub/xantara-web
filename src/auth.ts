@@ -18,9 +18,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user }) {
             try {
-                await connectDB();
+                console.log("USER:", user);
 
-                console.log("Google Login:", user.email);
+                await connectDB();
 
                 const existingUser = await User.findOne({
                     email: user.email,
@@ -31,14 +31,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         name: user.name,
                         email: user.email,
                     });
-
-                    console.log("Created:", user.email);
                 }
 
                 return true;
             } catch (error) {
-                console.error("SIGNIN ERROR:", error);
-                return false;
+                console.error("SIGNIN ERROR FULL:", error);
+                throw error; // important
             }
         },
     },
