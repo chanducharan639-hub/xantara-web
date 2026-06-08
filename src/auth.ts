@@ -16,33 +16,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         error: "/login",
     },
     callbacks: {
+
         async signIn({ user }) {
-            try {
-                console.log("USER:", user);
+            console.log("USER:", user);
 
-                await connectDB();
-                console.log("DB CONNECTED");
+            await connectDB();
 
-                const existingUser = await User.findOne({
+            const existingUser = await User.findOne({
+                email: user.email,
+            });
+
+            console.log("FOUND:", existingUser);
+
+            if (!existingUser) {
+                const created = await User.create({
+                    name: user.name,
                     email: user.email,
                 });
 
-                console.log("FOUND USER:", existingUser);
-
-                if (!existingUser) {
-                    await User.create({
-                        name: user.name,
-                        email: user.email,
-                    });
-
-                    console.log("USER CREATED");
-                }
-
-                return true;
-            } catch (error) {
-                console.error("SIGNIN ERROR:", error);
-                return false;
+                console.log("CREATED:", created);
             }
-        },
+
+            return true;
+        }
     },
 });
