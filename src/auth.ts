@@ -27,14 +27,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 });
 
                 if (!existingUser) {
-                    console.log("Creating user:", user.email);
-
                     await User.create({
                         name: user.name,
                         email: user.email,
                     });
-                } else {
-                    console.log("User already exists:", user.email);
+
+                    console.log("Created:", user.email);
                 }
 
                 return true;
@@ -42,6 +40,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 console.error("SIGNIN ERROR:", error);
                 return false;
             }
-        }
-    }
+        },
+    },
 });
