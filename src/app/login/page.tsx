@@ -20,9 +20,7 @@ function DashboardInner() {
   const { data: session, status } = useSession();
   const user = session?.user;
   const authLoading = status === "loading";
-  <div style={{ background: "yellow", padding: "10px", marginBottom: "20px" }}>
-    <pre>{JSON.stringify(session, null, 2)}</pre>
-  </div>
+
   // ✅ ONLY THIS LINE CHANGED
   const handleLogin = async () => {
     await signIn("google", {
