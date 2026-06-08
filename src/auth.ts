@@ -21,22 +21,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 console.log("USER:", user);
 
                 await connectDB();
+                console.log("DB CONNECTED");
 
                 const existingUser = await User.findOne({
                     email: user.email,
                 });
+
+                console.log("FOUND USER:", existingUser);
 
                 if (!existingUser) {
                     await User.create({
                         name: user.name,
                         email: user.email,
                     });
+
+                    console.log("USER CREATED");
                 }
 
                 return true;
             } catch (error) {
-                console.error("SIGNIN ERROR FULL:", error);
-                throw error; // important
+                console.error("SIGNIN ERROR:", error);
+                return false;
             }
         },
     },
