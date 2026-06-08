@@ -18,44 +18,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user }) {
             try {
-                await connectDB();
-
-                const existingUser = await User.findOne({
-                    email: user.email,
-                });
-
-                if (!existingUser) {
-                    await User.create({
-                        name: user.name,
-                        email: user.email,
-                    });
-                }
-
+                console.log("Google user:", user);
                 return true;
             } catch (error) {
-                console.error("Google Sign In Error:", error);
+                console.error("GOOGLE SIGNIN ERROR:", error);
                 return false;
             }
-        },
-
-        async redirect({ url, baseUrl }) {
-            if (url.startsWith("/")) return `${baseUrl}${url}`;
-            if (new URL(url).origin === baseUrl) return url;
-            return baseUrl;
-        },
-
-        async jwt({ token, profile }) {
-            if (profile?.email) {
-                token.email = profile.email;
-            }
-            return token;
-        },
-
-        async session({ session, token }) {
-            if (session.user) {
-                session.user.email = token.email as string;
-            }
-            return session;
         },
     }
 });
