@@ -18,12 +18,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user }) {
             try {
-                console.log("Google user:", user);
+                await connectDB();
+
+                console.log("Google Login:", user.email);
+
+                const existingUser = await User.findOne({
+                    email: user.email,
+                });
+
+                if (!existingUser) {
+                    console.log("Creating user:", user.email);
+
+                    await User.create({
+                        name: user.name,
+                        email: user.email,
+                    });
+                } else {
+                    console.log("User already exists:", user.email);
+                }
+
                 return true;
             } catch (error) {
-                console.error("GOOGLE SIGNIN ERROR:", error);
+                console.error("SIGNIN ERROR:", error);
                 return false;
             }
-        },
-    }
-});
+        }
+    });
