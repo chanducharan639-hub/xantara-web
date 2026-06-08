@@ -18,26 +18,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
 
         async signIn({ user }) {
-            console.log("USER:", user);
+            try {
+                await connectDB();
+                console.log("SIGNIN START");
 
-            await connectDB();
-
-            const existingUser = await User.findOne({
-                email: user.email,
-            });
-
-            console.log("FOUND:", existingUser);
-
-            if (!existingUser) {
-                const created = await User.create({
-                    name: user.name,
+                const existingUser = await User.findOne({
                     email: user.email,
                 });
 
-                console.log("CREATED:", created);
-            }
+                if (!existingUser) {
+                    await User.create({
+                        name: user.name,
+                        email: user.email,
+                    });
+                }
 
-            return true;
+                return true; // IMPORTANT
+            } catch (error) {
+                console.error("SIGNIN ERROR:", error);
+                return false;
+            }
         }
     },
 });
